@@ -17,7 +17,7 @@ RUN cd /root/ && git clone https://github.com/lengstrom/fast-style-transfer.git
 WORKDIR /root/fast-style-transfer
 
 # Download rain princess checkpoint
-RUN mkdir checkpoints && cd checkpoints && git clone https://github.com/thommiano/rain_princess_checkpoint.git
+RUN git clone https://github.com/thommiano/udlf_fst_checkpoints.git
 
 # Create a Python 2.7 environment in the style transfer directory 
 # Note that this is not python 2.7.9, which was the version instructed to use.
