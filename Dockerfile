@@ -1,15 +1,22 @@
 # Install Ubuntu 14.04 with CUDA 8
-# FROM kaixhin/cuda-caffe:8.0
+FROM kaixhin/cuda-caffe:8.0
 
 # Install Ubuntu 16.04, CUDA 8 and cudnn 5, and miniconda3
-FROM ubuntu:16.04
-FROM  nvidia/cuda:8.0-cudnn5-runtime-ubuntu16.04
+#FROM  nvidia/cuda:8.0-cudnn5-runtime-ubuntu16.04
 FROM continuumio/miniconda3
+
+RUN apt-get update && apt-get install -y sudo 
+
+# Install wget and build-essential
+#RUN apt-get update && apt-get install -y \
+#    build-essential \
+#    wget
 
 # Install pip, python, and nano
 RUN sudo apt-get update && sudo apt-get -y upgrade
 RUN sudo apt-get install -y python-pip \
-    nano
+    nano \
+    unzip
 
 # Install virtualenv
 #RUN pip install virtualenv
@@ -33,7 +40,7 @@ RUN git clone https://github.com/thommiano/udlf_fst_checkpoints.git
 RUN conda create -n style-transfer python=2.7.9
 RUN /bin/bash -c "source activate style-transfer \
     && conda install -c conda-forge tensorflow=0.11.0 \
-    && conda install scipy pillow
+    && conda install scipy pillow"
 
 # Run setup.py to extract training code
-RUN /root/fast-style-transfer/ ./setup.sh
+RUN cd /root/fast-style-transfer/ && sudo ./setup.sh
