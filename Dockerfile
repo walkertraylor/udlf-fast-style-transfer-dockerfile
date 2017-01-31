@@ -2,7 +2,7 @@
 # FROM kaixhin/cuda-caffe:8.0
 
 # Install Ubuntu 16.04 and CUDA 8
-FROM  nvidia/cuda8.0-cudnn5-runtime-ubuntu16.04
+FROM  nvidia/8.0-cudnn5-runtime-ubuntu16.04
 # Install Anaconda
 FROM continuumio/miniconda3
 
