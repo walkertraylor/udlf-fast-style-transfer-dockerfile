@@ -5,7 +5,7 @@ FROM kaixhin/cuda-caffe:8.0
 #FROM  nvidia/cuda:8.0-cudnn5-runtime-ubuntu16.04
 FROM continuumio/miniconda3
 
-RUN apt-get update && apt-get install -y sudo 
+RUN apt-get update && apt-get install -y sudo software-properties-common
 
 # Install wget and build-essential
 #RUN apt-get update && apt-get install -y \
@@ -16,7 +16,16 @@ RUN apt-get update && apt-get install -y sudo
 RUN sudo apt-get update && sudo apt-get -y upgrade
 RUN sudo apt-get install -y python-pip \
     nano \
-    unzip
+    unzip \
+
+# Install ffmpeg
+RUN apt-get update && \
+    apt-get -y install \
+    software-properties-common && \
+    apt-add-repository -y ppa:mc3man/trusty-media && \
+    apt-get update && \
+    apt-get -y install ffmpeg && \
+    rm -rf /var/lib/apt/lists/*
 
 # Install virtualenv
 #RUN pip install virtualenv
